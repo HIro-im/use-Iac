@@ -9,3 +9,7 @@
 ・SNS
 ・S3
 ・CloudFront
+
+## デプロイ時に使うコマンド
+・sam build
+・sam deploy --guided
