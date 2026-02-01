@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Contact Test</title>
+    <style>
+        body { font-family: sans-serif; padding: 2rem; max-width: 600px; margin: 0 auto; }
+        .form-group { margin-bottom: 1rem; }
+        label { display: block; margin-bottom: .5rem; font-weight: bold; }
+        textarea { width: 100%; height: 100px; padding: .5rem; }
+        button { background-color: #007bff; color: white; border: none; padding: .5rem 1rem; cursor: pointer; }
+        button:hover { background-color: #0056b3; }
+        #status { margin-top: 1rem; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <h1>お問い合わせテスト</h1>
+    <div class="form-group">
+        <label for="message">メッセージ:</label>
+        <textarea id="message">Webページからのテスト送信です！</textarea>
+    </div>
+    <button id="sendBtn">送信する</button>
+    <div id="status"></div>
+
+    <script>
+        // ★ここにJavaScriptを書きます
+        const API_URL = "https://ny8yyf0qac.execute-api.ap-northeast-1.amazonaws.com/Prod/contact/";
+
+        document.getElementById('sendBtn').addEventListener('click', async () => {
+            const message = document.getElementById('message').value;
+            const statusDiv = document.getElementById('status');
+            statusDiv.textContent = "送信中...";
+
+            try {
+                // ------------------------------------------------
+                // 【課題】ここに fetch メソッドを使った送信処理を書く
+                // ------------------------------------------------
+                // ヒント: 
+                // method は "POST"
+                // headers には "Content-Type": "application/json" が必要かも？
+                // body は JSON.stringify({ body: message }) する必要がある？
+                
+                const response = await fetch(API_URL, {
+                    method: "POST",
+                    body: JSON.stringify({body: message})
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    statusDiv.textContent = "成功: " + JSON.stringify(data);
+                    statusDiv.style.color = "green";
+                } else {
+                    statusDiv.textContent = "エラー: " + response.status;
+                    statusDiv.style.color = "red";
+                }
+
+            } catch (error) {
+                console.error('Error:', error);
+                statusDiv.textContent = "通信エラーが発生しました（F12コンソールを確認！）";
+                statusDiv.style.color = "red";
+            }
+        });
+    </script>
+</body>
+</html>
