@@ -12,4 +12,4 @@
 
 ## デプロイ時に使うコマンド
 ・sam build  
-・sam deploy --guided
+・sam deploy --guided(メールアドレスはこのタイミングで入力する)
