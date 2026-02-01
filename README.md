@@ -4,12 +4,12 @@
 ・AWS SNSからメールを送信するアプリを作成
 
 ## 構成
-・APIGateway
-・Lambda
-・SNS
-・S3
-・CloudFront
+・APIGateway  
+・Lambda  
+・SNS  
+・S3  
+・CloudFront  
 
 ## デプロイ時に使うコマンド
-・sam build
+・sam build  
 ・sam deploy --guided
